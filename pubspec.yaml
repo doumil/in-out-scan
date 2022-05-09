@@ -54,6 +54,7 @@ dependencies:
   universal_html: 1.2.4
   intl_phone_field:
   flutter_native_splash:
+  flutter_launcher_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +64,10 @@ flutter_native_splash:
   image: assets/icone550.png
   android: true
   ios: true
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icone550.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
