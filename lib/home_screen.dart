@@ -213,13 +213,13 @@ class _HomeScreen extends State<HomeScreen> {
         body: Column(
           children: [
             Expanded(
-              flex: 62,
+              flex: 40,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(120),
+                      bottomLeft: Radius.elliptical(200,100),
                     ),
                     child: SizedBox(
                       width: double.infinity,
@@ -227,13 +227,6 @@ class _HomeScreen extends State<HomeScreen> {
                       child: Image.asset(
                         "assets/background-buz2.png",
                         fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(80),
                       ),
                     ),
                   ),
@@ -265,67 +258,86 @@ class _HomeScreen extends State<HomeScreen> {
               ),
             ),
             Expanded(
-             flex: 10,
-              child: Center(
-                child:Wrap(
-                    children: <Widget>[
-                      DecoratedBox(
-                          decoration: BoxDecoration(
-                              color:Colors.white, //background color of dropdown button
-                              border: Border.all(color: Colors.black38,
-                                  width:1), //border of dropdown button
-                              borderRadius: BorderRadius.circular(20), //border raiuds of dropdown button
-                              boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
-                                    blurRadius: 5) //blur radius of shadow
-                              ]
-                          ),
-
-                          child:Padding(
-                              padding: EdgeInsets.only(left:20, right:20),
-                            child: DropdownButton(
-                              underline: Container(),
-                              iconEnabledColor: Color(0xff682062), //Icon color
-                              style: TextStyle(  //te
-                                  color: Color(0xff682062), //Font color
-                                  fontSize: 18 //font size on dropdown button
-                              ),
-                              value: dropdownValue,
-                             // hint: Text("Sélectionnez la référence"),
-                              items: liteconf.map((list) {
-                                return DropdownMenuItem<String>(
-                                  value:(int.parse(list.id_conf)).toString(),
-                                  child: Text(list.name),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  dropdownValue=value;
-                                });
-                              },
+                flex:35,
+              child: Column(children: <Widget>[
+                Text('Vous pouvez choisir conférence et scanner maintenant',
+                  style: TextStyle(
+                      height: 6,
+                      color: Color(0xff803b7a), fontWeight: FontWeight.w800,
+                      fontSize: MediaQuery.of(context).size.height*0.02),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.01),
+                  width: MediaQuery.of(context).size.width*0.9,
+                  height: 2,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.grey.withOpacity(0.05),
+                        Colors.grey.withOpacity(0.5),
+                        Colors.grey.withOpacity(0.05),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Center(
+                    child:Wrap(
+                      children: <Widget>[
+                        DecoratedBox(
+                            decoration: BoxDecoration(
+                                color:Colors.white, //background color of dropdown button
+                                border: Border.all(color: Colors.black38,
+                                    width:1), //border of dropdown button
+                                borderRadius: BorderRadius.circular(20), //border raiuds of dropdown button
+                                boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                  BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
+                                      blurRadius: 5) //blur radius of shadow
+                                ]
                             ),
-                          )
-                      )
-                    ],
-                )
-              ),
+                            child:Padding(
+                              padding: EdgeInsets.only(left:20, right:20),
+                              child: DropdownButton(
+                                underline: Container(),
+                                iconEnabledColor: Color(0xff682062), //Icon color
+                                style: TextStyle(  //te
+                                    color: Color(0xff682062), //Font color
+                                    fontSize: 18 //font size on dropdown button
+                                ),
+                                value: dropdownValue,
+                                // hint: Text("Sélectionnez la référence"),
+                                items: liteconf.map((list) {
+                                  return DropdownMenuItem<String>(
+                                    value:(int.parse(list.id_conf)).toString(),
+                                    child: Text(list.name),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    dropdownValue=value;
+                                  });
+                                },
+                              ),
+                            )
+                        )
+                      ],
+                    )
+                ),
+              ]
+             ),
             ),
             Expanded(
-              flex: 38,
+              flex: 50,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0.05),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Vous pouvez scannez maintenant",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff682062),
-                          fontFamily: "Poppins",
-                        )),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Row(
